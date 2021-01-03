@@ -1,23 +1,36 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
+import Login from './Components/Login/Login';
+import { getTokenFromUrl } from './spotify';
+import SpotifyWebApi from 'spotify-web-api-js'
 
 function App() {
+  // run code based on given condition
+  const [token, setToken] = useState(null)
+
+  useEffect(() => {
+    // get token from url
+    const hash = getTokenFromUrl()
+    // stripped token from the url
+    window.location.hash = ''
+    const _token = hash.access_token
+
+    if (_token) {
+      // stored token in state
+      setToken(_token)
+    }
+    console.log('TOKEN HERE >>>>>>>', token)
+  }, [])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      {/* if there's a token render <Player/> else render <Login/> */}
+      {
+        token ? (
+          <h1>im logged in</h1>
+        ) : (
+          <Login />
+        )
+      }
     </div>
   );
 }
