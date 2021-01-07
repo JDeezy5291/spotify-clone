@@ -1,8 +1,29 @@
 .footer {
   position: fixed;
+  display: flex;
   bottom: 0;
   height: 65px;
-  width: 100%;
+  width: 97%;
   background-color: #282828;
   padding: 20px;
+  justify-content: space-between;
+}
+.footer__left {
+  flex: 30%;
+}
+.footer__center {
+  flex: 40%;
+  padding: 0 100px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 300px;
+}
+.footer__right {
+  flex: 30%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
